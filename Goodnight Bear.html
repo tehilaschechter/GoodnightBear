@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html> 
+ <head>
+    <title>Processing.JS inside Webpages: Template</title> 
+</head>
+ <body>
+    <p align="center"> 
+
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+       
+        // ProgramCodeGoesHere
+           background(44, 133, 27);
+
+      var drawBear = function(){
+          noStroke();
+          fill(69, 64, 64);//grey
+          noStroke();
+          ellipse(150,150,20,20);//hand
+          ellipse(250,150,20,20);//hand
+
+
+          fill(69,64,64);//grey
+          ellipse(175,95,40,40);//ear
+          ellipse(223,95,40,40);//ear
+
+
+          fill(172,145,230);//purple
+          ellipse(200, 116, 64, 55);//face
+          ellipse(200,175, 100,100);//body
+
+          fill(61, 124, 191);//blue
+          triangle(187,135,210,135,200,150);//triangle of tie
+          triangle(200,145,187,180,210,180);//2nd triangle of tie
+          triangle (187,180,210,180,199,195);
+
+
+          fill(69, 64, 64);
+
+          ellipse(190, 110, 8, 8);//eye
+          ellipse(210, 110, 8, 8);//eye
+          ellipse(200, 125, 15, 15);//nose
+          ellipse(170,220,30,30);//foot
+          ellipse(230,220,30,30);//foot
+      };
+          background(44, 133, 27);
+
+          var drawTree = function(){
+          rect(0,50,40,400);//trunk
+
+          fill(25, 71, 7);
+          ellipse(20,20,250,250);//tree
+
+      };
+          var Button = function(config) {
+          this.x = config.x || 0;
+          this.y = config.y || 0;
+          this.width = config.width || 234;
+          this.height = config.height || 50;
+          this.label = config.label || "Click";
+          this.onClick = config.onClick || function() {};
+      };
+      Button.prototype.draw = function() {
+          fill(247, 242, 243);
+          rect(this.x, this.y, this.width, this.height, 5);
+          fill(0, 0, 0);
+          textSize(19);
+          textAlign(LEFT, TOP);
+          text(this.label, this.x+10, this.y+this.height/4);
+      };
+          Button.prototype.isMouseInside = function() {
+          return mouseX > this.x &&
+                 mouseX < (this.x + this.width) &&
+                 mouseY > this.y &&
+                 mouseY < (this.y + this.height);
+      };
+
+      Button.prototype.handleMouseClick = function() {
+          if (this.isMouseInside()) {
+              this.onClick();
+          }
+      };
+
+      var btn1 = new Button({
+          x: 100,
+          y: 327,
+          label: "Click to make it nighttime!",
+          onClick: function() {
+              background(7, 9, 56);
+          }
+      });
+
+      mouseClicked = function() {
+          btn1.handleMouseClick();
+          drawBear();
+          drawTree();
+          rect(0,300,400,100);//grass
+      };
+
+          drawBear();
+          drawTree();
+          rect(0,300,400,100);//grass
+          btn1.draw();
+
+
+          }};
+
+   
+    var canvas = document.getElementById("mycanvas"); 
+    
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
